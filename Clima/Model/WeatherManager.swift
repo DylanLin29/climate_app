@@ -16,31 +16,20 @@ protocol WeatherManagerDelegate {
 struct WeatherManager {
     
     var delegate: WeatherManagerDelegate?
-    
-    let weatherURL =
-    "https://api.openweathermap.org/data/2.5/weather?appid=b3551f9f32a0dfccebb473e30fdcfa7d&units=metric"
-    
-    let timeURL =
-    "https://api.ipgeolocation.io/timezone?&apiKey=d17cd7d20e4d42cba3fe2cae37b627aa"
+    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=b3551f9f32a0dfccebb473e30fdcfa7d&units=metric"
     
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
-        performRequest(with: urlString, urlType: "Weather")
+        performRequest(with: urlString)
     }
     
     func fetchWeather(latitude: Double, longitude: Double)
     {
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-        performRequest(with: urlString, urlType: "Weather")
+        performRequest(with: urlString)
     }
     
-    func fetchTime(latitude: Double, longitude: Double)
-    {
-        let urlString = "\(timeURL)&lat=\(latitude)&long=\(longitude)"
-        performRequest(with: urlString, urlType: "Time")
-    }
-    
-    func performRequest(with urlString: String, urlType: String){
+    func performRequest(with urlString: String){
         //1. Create a URL
         if let url = URL(string: urlString)
         {
@@ -55,22 +44,12 @@ struct WeatherManager {
                 }
                 if let safeData = data
                 {
-                    if urlType == "Weather"
+                    if let weather = self.parseJSON(safeData)
                     {
-                        if let weather = self.parseJSON(safeData)
-                        {
-                            self.delegate?.didUpdateWeather(self, weather: weather)
-                        }
-                    }
-                    else if urlType == "Time"
-                    {
-                        if let time = self.parseJSONTime(safeData)
-                        {
-                            self
-                        }
+                        self.delegate?.didUpdateWeather(self, weather: weather)
                     }
                 }
-            }
+             }
             //4. Start the task
             task.resume()
         }
@@ -95,19 +74,6 @@ struct WeatherManager {
         }
     }
     
-    func parseJSONTime(_ timeData: Data)->String?
-    {
-        let decoder = JSONDecoder()
-        do
-        {
-            let decodedData = try decoder.decode(TimeData.self, from: timeData)
-            let time = decodedData.time_12
-            return time
-        }catch
-        {
-            delegate?.didFailWithError(error: error)
-            return nil
-        }
-    }
-    
 }
+
+

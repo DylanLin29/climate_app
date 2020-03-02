@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E068F7F240CAACB00377FC8 /* TimeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E068F7E240CAACB00377FC8 /* TimeData.swift */; };
+		3E068F81240CC36C00377FC8 /* TimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E068F80240CC36C00377FC8 /* TimeManager.swift */; };
 		3E273E0B24077FCC003706AB /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E273E0A24077FCC003706AB /* WeatherData.swift */; };
 		3E273E0D240791EC003706AB /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E273E0C240791EC003706AB /* WeatherModel.swift */; };
 		3EC08A4824072743002C4736 /* WeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC08A4724072743002C4736 /* WeatherManager.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		3E068F7E240CAACB00377FC8 /* TimeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeData.swift; sourceTree = "<group>"; };
+		3E068F80240CC36C00377FC8 /* TimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeManager.swift; sourceTree = "<group>"; };
 		3E273E0A24077FCC003706AB /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		3E273E0C240791EC003706AB /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		3EC08A4724072743002C4736 /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherManager.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				3EC08A4724072743002C4736 /* WeatherManager.swift */,
+				3E068F80240CC36C00377FC8 /* TimeManager.swift */,
 				3E273E0A24077FCC003706AB /* WeatherData.swift */,
 				3E273E0C240791EC003706AB /* WeatherModel.swift */,
 				3E068F7E240CAACB00377FC8 /* TimeData.swift */,
@@ -184,6 +187,7 @@
 				3EC08A4824072743002C4736 /* WeatherManager.swift in Sources */,
 				3E068F7F240CAACB00377FC8 /* TimeData.swift in Sources */,
 				3E273E0D240791EC003706AB /* WeatherModel.swift in Sources */,
+				3E068F81240CC36C00377FC8 /* TimeManager.swift in Sources */,
 				ADAA27B3231BBFAF00365194 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

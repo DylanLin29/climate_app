@@ -18,6 +18,7 @@ class WeatherViewController: UIViewController
     @IBOutlet weak var searchTextField: UITextField!
     
     var weatherManager = WeatherManager()
+    var timeManager = TimeManager()
     let locationManager = CLLocationManager()
     
     override func viewDidLoad()
@@ -28,8 +29,7 @@ class WeatherViewController: UIViewController
         locationManager.requestWhenInUseAuthorization() // Ask the user for permision
         locationManager.requestLocation()
         
-        overrideUserInterfaceStyle = .light
-        
+        timeManager.delegate = self
         weatherManager.delegate = self
         searchTextField.delegate = self
     }
@@ -101,7 +101,9 @@ extension WeatherViewController: CLLocationManagerDelegate
             locationManager.stopUpdatingLocation()
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
+            timeManager.fetchTime(latitude: lat, longitude: lon)
             weatherManager.fetchWeather(latitude: lat, longitude: lon)
+                    
         }
     }
     
@@ -109,3 +111,29 @@ extension WeatherViewController: CLLocationManagerDelegate
         print(error)
     }
 }
+
+//MARK: - TimeManagerDelegate
+
+extension WeatherViewController: TimeManagerDelegate
+{
+    func didTimeFailWithError(error: Error) {
+        print(error)
+    }
+    
+    func didUpdateTime(_ timeManager: TimeManager, time: String)
+    {
+        DispatchQueue.main.async
+        {
+            if(time == "PM")
+            {
+                self.overrideUserInterfaceStyle = .dark
+            }
+            else
+            {
+                self.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+    
+}
+
